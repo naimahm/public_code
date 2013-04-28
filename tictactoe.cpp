@@ -1,4 +1,4 @@
-#include <iostream>
+d#include <iostream>
 #include <cstdlib>
 
 using namespace std;
@@ -141,6 +141,16 @@ int playgame(char (&board)[3][3])
 	return winner;
 }
 
+int playagain()
+{
+	int answer = 0;
+	
+	cout << "Want to play again? Enter 1 to play again, 0 if not. ";
+	cin >> answer;
+	
+	return answer;
+}
+
 
 int main()
 {
@@ -154,6 +164,7 @@ int main()
 	cout << "Let's start, you go first.\n";
 	playgame(board);
 	
+	while(playagain()) playgame(board);
 	
     
 	return 0;
