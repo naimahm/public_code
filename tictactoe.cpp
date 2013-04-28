@@ -1,4 +1,4 @@
-d#include <iostream>
+#include <iostream>
 #include <cstdlib>
 
 using namespace std;
@@ -37,8 +37,17 @@ void clearboard(char (&board)[3][3])
 void setx(int row, int col, char (&board)[3][3])
 {
 	
-	char x='x';	
-	if (board[row][col] == ' ')	board[row][col] = x;
+	char x='x';
+	if(row > 2 || row < 0 || col > 2 || col < 0)
+	{	
+		cout << "\nNot on board, please try again\n"
+			<< "Please enter another row: ";
+		cin >> row;
+		cout << " and column: ";
+		cin >> col;
+		setx(row-1,col-1,board);
+	}
+	else if (board[row][col] == ' ')	board[row][col] = x;
 	else
 	{	cout << "Spot taken, please enter another row: ";
 		cin >> row;
@@ -51,11 +60,15 @@ void setx(int row, int col, char (&board)[3][3])
 
 void seto(char (&board)[3][3])
 {
-	int row, col;
-	char o='o';
+	int row, col, i, j;
+	char o='o';	
+		
+	random();
 	row = rand()%3;
+	random();
 	col = rand()%3;
 	cout << "\nmy turn\n";
+	
 	if (board[row][col] == ' ') board[row][col] = o;
 	else seto(board);
 	
@@ -141,14 +154,15 @@ int playgame(char (&board)[3][3])
 	return winner;
 }
 
-int playagain()
+bool playagain()
 {
-	int answer = 0;
+	int choice;
 	
-	cout << "Want to play again? Enter 1 to play again, 0 if not. ";
-	cin >> answer;
+	cout << "\nWant to play again? Enter 1 to play again, 0 if not. ";
+	cin >> choice;
+	if(choice==1) return true;
 	
-	return answer;
+	return false;
 }
 
 
@@ -164,7 +178,11 @@ int main()
 	cout << "Let's start, you go first.\n";
 	playgame(board);
 	
-	while(playagain()) playgame(board);
+	while(playagain())
+	{ 
+		clearboard(board);
+		playgame(board);
+	}
 	
     
 	return 0;
