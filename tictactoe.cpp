@@ -2,7 +2,7 @@
 #include <cstdlib>
 
 using namespace std;
-void showcurrentboard(char (&board)[3][3])
+void showcurrentboard(char board[3][3])
 {	
 	cout << " _________________\n";
 	cout << "|     |     |     | \n";
@@ -102,7 +102,7 @@ void winnerdisplay(char c)
 	else cout << "I win";
 }
 
-bool gamewon(char (&board)[3][3])
+bool gamewon(char board[3][3])
 {
 	bool row0_win = (board[0][0]!=' ' && (board[0][0] == board[0][1]) && (board[0][1] == board[0][2]));
 	bool row1_win = (board[1][0]!=' ' && (board[1][0] == board[1][1]) && (board[1][1] == board[1][2]));
