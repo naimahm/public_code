@@ -21,7 +21,7 @@ austin = 0
 for i in range(0, voicesaves.__len__()):
     if 'caroline' in voicesaves[i].text:
         caroline += 1
-    if 'austin' in voicessaves[i].text:
+    if 'austin' in voicesaves[i].text:
         austin += 1
 
 if caroline > austin:
