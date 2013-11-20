@@ -12,7 +12,6 @@ void *increment(void *threadid){
 	struct timespec req = {0};
 	
 	req.tv_sec = 0;
-	//req.tv_nsec = 5000 * 1000000L;
 	req.tv_nsec = 10;
 	pthread_mutex_lock(&mutex);
 	tid = (int) threadid;	
@@ -26,7 +25,6 @@ void *increment(void *threadid){
 	sum += 10;
 	fprintf(stderr, "thread #%d: new local value = %d\n", tid, sum);
 	global_counter = sum;
-	//pthread_exit ((void*) 0);
 	nanosleep(&req, (struct timespec *)NULL);
 	pthread_mutex_unlock(&mutex);		
 	
